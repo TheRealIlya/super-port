@@ -2,42 +2,34 @@ package eu.senla.super_port.deck;
 
 import eu.senla.super_port.container.Container;
 import eu.senla.super_port.weighable.Weighable;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Deck implements Weighable {
 
-    private Container[] containers;
+    private final List<Container> containers = new ArrayList<>();
     private int maxNumberOfContainers;
-    private int numOfContainers = 0;
 
     public boolean addContainer(Container container) {
-        if (numOfContainers == 0) {
+        if (containers.isEmpty()) {
             maxNumberOfContainers = container.getMaxNumberOnDeck();
-            containers = new Container[maxNumberOfContainers];
         }
 
-        if (numOfContainers < containers.length && maxNumberOfContainers == container.getMaxNumberOnDeck()) {
-            containers[numOfContainers++] = container;
-            return true;
+        if (containers.size() < maxNumberOfContainers && maxNumberOfContainers == container.getMaxNumberOnDeck()) {
+            return containers.add(container);
         }
         return false;
     }
 
     @Override
     public int getWeight() {
-        int weight = 0;
-        for (Container container : containers) {
-            if (container != null) {
-                weight += container.getWeight();
-            }
-        }
-        return weight;
+        return getWeightFromWeighables(containers);
     }
 
     @Override
     public String toString() {
         return "Deck{" +
-                "containers=" + Arrays.toString(containers) +
+                "containers=" + containers +
                 '}';
     }
 }

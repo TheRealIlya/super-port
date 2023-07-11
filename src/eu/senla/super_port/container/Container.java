@@ -11,11 +11,7 @@ public abstract class Container implements Weighable {
     private int width;
 
     protected Container(int height, WaterDensity waterDensity) {
-        if (height > 40 || height < 10) {
-            this.height = 10;
-        } else {
-            this.height = height;
-        }
+        this.height = (height > 40 || height < 10) ? 10 : height;
         this.density = waterDensity.getValue();
     }
 
