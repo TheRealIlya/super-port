@@ -15,7 +15,10 @@ public class Port implements Weighable {
     }
 
     public boolean addShip(Ship ship) {
-        return ships.size() < maxNumberOfShips && ships.add(ship);
+        if (ships.size() >= maxNumberOfShips) {
+            return false;
+        }
+        return ships.add(ship);
     }
 
     public void deleteShipByIndex(int index) {
