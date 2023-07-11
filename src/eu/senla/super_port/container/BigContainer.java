@@ -8,9 +8,7 @@ public class BigContainer extends Container {
     private static final int MAX_NUMBER = 2;
 
     public BigContainer(int height, WaterDensity waterDensity) {
-        super(height, waterDensity);
-        this.setLength(LENGTH_AND_WIDTH);
-        this.setWidth(LENGTH_AND_WIDTH);
+        super(height, waterDensity, LENGTH_AND_WIDTH, LENGTH_AND_WIDTH);
     }
 
     @Override
